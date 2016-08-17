@@ -9,18 +9,18 @@
 
         <script>
             function fCalc()
-			{
+	    {
                 var aNum  = parseInt( a.value);
                 var op    = opr.value;    
                 var bNum  = parseInt( b.value);
 				
-				res.value = calcAjax(aNum, bNum, op);
+		res.value = calcAjax(aNum, bNum, op);
             }
 			
 			function calcAjax( a, b, op )
 			{
 				var prm = "aNum="+a+"&bNum="+b+"&oPer="+op;
-			    var xhr = new XMLHttpRequest();
+				var xhr = new XMLHttpRequest();
 			
 				var res = "";
 				xhr.onreadystatechange = function() 
@@ -33,10 +33,9 @@
 				
 				xhr.open('POST', 'CalcAjax', false);
 				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			    xhr.send(prm);
+			    	xhr.send(prm);
 				return res;
 			}
-
 			
         </script>
 </body>
