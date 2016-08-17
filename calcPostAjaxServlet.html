@@ -1,0 +1,55 @@
+<body>
+	<form name = "MyForm" method = "POST" action = "CalcAjax">
+		a  <input type = "text" id="a"  /><br>
+		op <input type = "text" id="opr" /><br>
+		b  <input type = "text" id="b"  /><br>
+		res<input type = "text" id="res"/><br>
+		<input type = "button" id="btnCalc" value="Calc" onclick="fCalc()"/>
+	</form>
+
+        <script>
+            function fCalc()
+			{
+                var aNum  = parseInt( a.value);
+                var op    = opr.value;    
+                var bNum  = parseInt( b.value);
+				
+				res.value = calcAjax(aNum, bNum, op);
+            }
+			
+			function calcAjax( a, b, op )
+			{
+				var prm = "aNum="+a+"&bNum="+b+"&oPer="+op;
+			    var xhr = new XMLHttpRequest();
+			
+				var res = "";
+				xhr.onreadystatechange = function() 
+				{
+					if (xhr.readyState == 4 && xhr.status == 200)
+					{
+						res = xhr.responseText;
+					}
+				}
+				
+				xhr.open('POST', 'CalcAjax', false);
+				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    xhr.send(prm);
+				return res;
+			}
+
+			function calc( a, b, op )
+			{
+				var res = 0;
+				switch( op )
+				{
+					case '+': res = a+b; break;
+					case '-': res = a-b; break;
+					case '/': res = a/b; break;
+					case '*': res = a*b; break;
+				}
+				return res;
+			}
+			
+        </script>
+</body>
+ 
